@@ -4,6 +4,9 @@ import { useCallback, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
+
 const Auth = () => {
   const router = useRouter();
 
@@ -84,6 +87,22 @@ const Auth = () => {
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
               {variant === 'login' ? 'Login' : 'Sign up'}
             </button>
+            <div className="w-full mt-10 flex flex-row justify-center gap-5 items-center">
+              <div
+                onClick={() => {
+                  signIn('google', { callbackUrl: '/' });
+                }}
+                className="bg-white w-10 h-10 flex justify-center items-center cursor-pointer rounded-full hover:opacity-80 transition">
+                <FcGoogle size={30} />
+              </div>
+              <div
+                onClick={() => {
+                  signIn('github', { callbackUrl: '/' });
+                }}
+                className="bg-white w-10 h-10 flex justify-center items-center cursor-pointer rounded-full hover:opacity-80 transition">
+                <FaGithub size={30} />
+              </div>
+            </div>
             <p className="text-neutral-500 mt-12">
               {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
               <span
