@@ -7,6 +7,8 @@ import useMovieList from '../hooks/useMovieList';
 import MovieList from '../components/MovieList';
 import { UserSession } from '../types/UserSession';
 import useFavorites from '../hooks/useFavorites';
+import InfoModal from '../components/InfoModal';
+import useInfoModal from '../hooks/useInfoModal';
 // import {Movie} from '../types/movie'
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -33,9 +35,10 @@ interface HomeProps {
 const Home = ({ user }: HomeProps) => {
   const { data: movies = [] } = useMovieList();
   const { data: favorites = [] } = useFavorites();
-
+  const { isOpen, closeModal } = useInfoModal();
   return (
     <>
+      <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar user={user} />
       <Billboard />
       <div className="pb-40">

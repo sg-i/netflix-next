@@ -6,7 +6,7 @@ import { Movie } from '../types/movie'
 
 
 const useBillboard = ()=>{
-    const {data,error,isLoading}=useSWR<Movie>('/api/random',fetcher,{
+    const {data,error,isLoading}=useSWR('/api/random',fetcher,{
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false

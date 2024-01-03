@@ -5,7 +5,7 @@ import { Movie } from '../types/movie'
 
 
 const useMovieList = ()=>{
-    const {data,error,isLoading}=useSWR<Movie>('/api/movies',fetcher,{
+    const {data,error,isLoading}=useSWR('/api/movies',fetcher,{
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false

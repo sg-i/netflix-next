@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
-import FavoritesButton from './FavoritesButton';
+import { BiChevronDown } from 'react-icons/bi';
+import FavoriteButton from './FavoriteButton';
+import PlayButton from './PlayButton';
+import { useRouter } from 'next/router';
+import useInfoModal from '../hooks/useInfoModal';
 type MovieCardProps = {
   id: string;
   title: string;
@@ -11,6 +15,8 @@ type MovieCardProps = {
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre }) => {
+  const router = useRouter();
+  const { openModal } = useInfoModal();
   return (
     <div className="group col-span h-[13vw] relative">
       <img
@@ -26,6 +32,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
         w-full
         h-[13vw]
         "
+        alt="Movie thumbnail"
         src={image}
       />
       <div
@@ -85,15 +92,36 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
                 transition
                 hover:bg-neutral-300
                 "
-              onClick={() => {}}>
+              onClick={() => router.push(`/watch/${id}`)}>
               <BsFillPlayFill className="mr-[-3px]" size={30} />
             </div>
-            <FavoritesButton movieId={id} />
+            <FavoriteButton movieId={id} />
+            <div
+              onClick={() => openModal(id)}
+              className="
+                cursor-pointer 
+                ml-auto 
+                group/item 
+                w-6 
+                h-6 
+                lg:h-10 
+                lg:w-10 
+                border-white 
+                border-2 
+                rounded-full 
+                flex 
+                justify-center 
+                items-center 
+                transition 
+                hover:border-neutral-300">
+              <BiChevronDown size={30} className="text-white group-hover/item:text-neutral-300 " />
+            </div>
           </div>
+
           <p className="text-white text-xl font-semibold mt-4">{title}</p>
 
           <div className="flex flex-row justify-between mt-4 gap-2 items-center">
-            <p className="text-white text-[10px] lg:text-sm">{genre}</p>
+            <p className="text-white text-[15px] lg:text-sm">{genre}</p>
           </div>
           <div className="flex flex-row justify-between mt-4 gap-2 items-center">
             <p className="text-green-400 font-semibold ">

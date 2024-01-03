@@ -72,7 +72,7 @@ const Navbar = ({ user }: NavbarProps) => {
           <NavbarItem label="Films" />
           <NavbarItem label="New & Popular" />
           <NavbarItem label="My List" />
-          <NavbarItem label="Browse bu languages" />
+          <NavbarItem label="Browse by languages" />
         </div>
         <div
           onClick={toggleMobileMenu}
@@ -94,7 +94,7 @@ const Navbar = ({ user }: NavbarProps) => {
             onClick={toggleAccountMenu}
             className="flex flex-row items-center gap-2 cursor-pointer relative">
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-              <img src={user.image ? user.image : '/images/default-blue.png'} />
+              <img alt="User image" src={user.image ? user.image : '/images/default-blue.png'} />
             </div>
             <BsChevronDown
               className={`text-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}
