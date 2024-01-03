@@ -9,10 +9,8 @@ import { UserSession } from '../types/UserSession';
 import useFavorites from '../hooks/useFavorites';
 import InfoModal from '../components/InfoModal';
 import useInfoModal from '../hooks/useInfoModal';
-// import {Movie} from '../types/movie'
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
-
   if (!session) {
     return {
       redirect: {
