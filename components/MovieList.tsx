@@ -2,6 +2,7 @@ import React from 'react';
 
 import { divide, isEmpty } from 'lodash';
 import { Movie } from '../types/movie';
+import MovieCard from './MovieCard';
 
 interface MovieListProps {
   data: Movie[];
@@ -9,7 +10,6 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
-  console.log('mov', data);
   if (isEmpty(data)) {
     return null;
   }
@@ -35,11 +35,16 @@ const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
           className="
             grid
             grid-cols-4
-            gap-2">
+            gap-4">
           {data.map((movie) => (
-            <div className="text-white" key={movie.id}>
-              {movie.title}
-            </div>
+            <MovieCard
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              image={movie.thumbnailUrl}
+              duration={movie.duration}
+              genre={movie.genre}
+            />
           ))}
         </div>
       </div>

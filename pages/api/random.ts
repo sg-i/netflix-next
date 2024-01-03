@@ -9,16 +9,14 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     }
 
     try {
-        const checkAuth = await serverAuth(req);
+        const checkAuth = await serverAuth(req, res);
 
         const movieCount=await prismadb.movie.count();
         const randomIndex=Math.floor(Math.random()*movieCount);
-        console.log(randomIndex)
         const randomMovies=await prismadb.movie.findMany({
             take: 1,
             skip: randomIndex
         })
-        console.log(randomMovies)
         return res.status(200).json(randomMovies[0]);
     } catch (error) {
         console.log(error)

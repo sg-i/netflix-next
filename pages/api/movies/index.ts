@@ -9,7 +9,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     }
 
     try {
-        const checkAuth = await serverAuth(req);
+        const checkAuth = await serverAuth(req, res);
 
         const movies = await prismadb.movie.findMany()
         return res.status(200).json(movies);

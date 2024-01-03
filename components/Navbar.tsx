@@ -3,14 +3,17 @@ import { MobileMenu } from './MobileMenu';
 import NavbarItem from './NavbarItem';
 import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
 import AccountMenu from './AccountMenu';
-
+import { UserSession } from '../types/UserSession';
 const TOP_OFFSET = 66;
 
-const Navbar = () => {
+interface NavbarProps {
+  user: UserSession;
+}
+
+const Navbar = ({ user }: NavbarProps) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= TOP_OFFSET) {
@@ -91,12 +94,16 @@ const Navbar = () => {
             onClick={toggleAccountMenu}
             className="flex flex-row items-center gap-2 cursor-pointer relative">
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-              <img src="/images/default-blue.png" />
+              <img src={user.image ? user.image : '/images/default-blue.png'} />
             </div>
             <BsChevronDown
               className={`text-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}
             />
-            <AccountMenu visible={showAccountMenu} />
+            <AccountMenu
+              username={user.name}
+              image={user.image ? user.image : '/images/default-blue.png'}
+              visible={showAccountMenu}
+            />
           </div>
         </div>
       </div>
