@@ -67,12 +67,12 @@ const Navbar = ({ user }: NavbarProps) => {
             hidden
             lg:flex
           ">
-          <NavbarItem label="Home" />
-          <NavbarItem label="Series" />
-          <NavbarItem label="Films" />
-          <NavbarItem label="New & Popular" />
-          <NavbarItem label="My List" />
-          <NavbarItem label="Browse by languages" />
+          <NavbarItem path="/" label="Home" />
+          {/* <NavbarItem label="Series" /> */}
+          <NavbarItem path="/movies" label="Movies" />
+          {/* <NavbarItem label="New & Popular" /> */}
+          {/* <NavbarItem label="My List" /> */}
+          {/* <NavbarItem label="Browse by languages" /> */}
         </div>
         <div
           onClick={toggleMobileMenu}

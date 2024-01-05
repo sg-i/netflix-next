@@ -6,4 +6,5 @@ export interface Movie{
     genre: string;
     duration: string;
     title: string;
+    year: number;
 }

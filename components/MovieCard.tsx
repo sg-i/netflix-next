@@ -12,9 +12,10 @@ type MovieCardProps = {
   image: string;
   duration: string;
   genre: string;
+  year: number;
 };
 
-const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre, year }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
   return (
@@ -125,7 +126,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
           </div>
           <div className="flex flex-row justify-between mt-4 gap-2 items-center">
             <p className="text-green-400 font-semibold ">
-              New <span className="text-white">2023</span>
+              New <span className="text-white">{year}</span>
             </p>
             <p className="text-white font-semibold ">{duration}</p>
           </div>

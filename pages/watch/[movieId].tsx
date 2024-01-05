@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useMovie from '../../hooks/useMovie';
 import { useRouter } from 'next/router';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -6,6 +6,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 const Watch = () => {
   const router = useRouter();
   const { movieId } = router.query;
+  useEffect(() => {}, []);
 
   const { data } = useMovie(movieId as string);
   return (

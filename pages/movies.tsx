@@ -1,8 +1,112 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { UserSession } from '../types/UserSession';
+import Navbar from '../components/Navbar';
+import { getSession } from 'next-auth/react';
+import { NextPageContext } from 'next';
+import GenreFilterItem from '../components/GenreFilterItem';
+import useMovie from '../hooks/useMovie';
+import useFilterMovies from '../hooks/useFilterMovies';
+import MovieList from '../components/MovieList';
+import InfoModal from '../components/InfoModal';
+import useInfoModal from '../hooks/useInfoModal';
+import DropDownSort from '../components/DropDownSort';
 
-type Props = {};
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      user: session.user,
+    },
+  };
+}
 
-const Movies = (props: Props) => {
-  return <div className="text-white">Movies</div>;
+interface MoviesProps {
+  user: UserSession;
+}
+const genres = ['All', 'Action', 'Comedy', 'Sci-Fi', 'Adventure'];
+const sorts = ['Views', 'Title', 'Year'];
+const typesSorts = ['Ascending', 'Descending'];
+const Movies: React.FC<MoviesProps> = ({ user }) => {
+  const [activeGenre, setActiveGenre] = useState('All');
+  const [sort, setSort] = useState('Views');
+  const [typeSort, setTypeSort] = useState('Descending');
+  const toggleActiveGenre = useCallback(
+    (genre: string) => {
+      setActiveGenre(genre);
+    },
+    [activeGenre],
+  );
+  const toggleSort = useCallback(
+    (newSort: string) => {
+      setSort(newSort);
+    },
+    [sort],
+  );
+  const toggleTypeSort = useCallback(
+    (newTypeSort: string) => {
+      setTypeSort(newTypeSort);
+    },
+    [typeSort],
+  );
+  const { data: movies } = useFilterMovies({
+    activeGenre,
+    sort,
+    typeSort,
+  });
+  const { isOpen, closeModal } = useInfoModal();
+  return (
+    <>
+      <InfoModal visible={isOpen} onClose={closeModal} />
+      <Navbar user={user} />
+      <div
+        className="
+          pt-24
+          px-3 sm:px-32 ">
+        <div
+          className=" 
+            flex
+            flex-row
+            justify-between
+            items-center">
+          <div
+            className="
+              flex
+              flex-row
+              gap-6
+              text-white">
+            {genres.map((genre) => (
+              <GenreFilterItem
+                key={genre}
+                onClick={toggleActiveGenre}
+                active={activeGenre == genre}
+                title={genre}
+              />
+            ))}
+          </div>
+
+          <DropDownSort
+            typeSort={typeSort}
+            toggleTypeSort={toggleTypeSort}
+            toggleSort={toggleSort}
+            sort={sort}
+          />
+        </div>
+        <div className="pt-7">
+          <MovieList title="Movies" data={movies} />
+          {/* {movies?.map((m: any) => (
+            <div key={m.id}>{m.title}</div>
+          ))} */}
+        </div>
+      </div>
+    </>
+  );
 };
 export default Movies;
