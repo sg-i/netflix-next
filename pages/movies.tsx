@@ -14,6 +14,7 @@ import MovieListVertical from '../components/MovieListVertical';
 import Input from '../components/input';
 import { EventEmitter } from 'stream';
 import Search from '../components/Search';
+import Loading from '../components/Loading';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -62,7 +63,7 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
     },
     [typeSort],
   );
-  const { data: movies } = useFilterMovies({
+  const { data: movies = [], isLoading } = useFilterMovies({
     activeGenre,
     sort,
     typeSort,
@@ -126,7 +127,8 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
           />
         </div>
         <div className="pt-7">
-          <MovieListVertical title="Movies" data={movies} />
+          {isLoading ? <Loading /> : <MovieListVertical title="Movies" data={movies} />}
+
           {/* {movies?.map((m: any) => (
             <div key={m.id}>{m.title}</div>
           ))} */}

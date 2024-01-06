@@ -74,7 +74,7 @@ const Navbar = ({ user }: NavbarProps) => {
           {/* <NavbarItem label="Series" /> */}
           <NavbarItem path="/movies" label="Movies" />
           {/* <NavbarItem label="New & Popular" /> */}
-          {/* <NavbarItem label="My List" /> */}
+          <NavbarItem path="/favorites" label="My List" />
           {/* <NavbarItem label="Browse by languages" /> */}
         </div>
         <div

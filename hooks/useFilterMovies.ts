@@ -12,10 +12,13 @@ interface filtersInterface{
 const useFilterMovies = (filters:filtersInterface)=>{
     const {activeGenre, sort, typeSort, search} = filters;
     const {data, error, isLoading, mutate} = useSWR(`/api/movies?genre=${activeGenre}&sort=${sort}&typesort=${typeSort}&search=${search}`, fetcher,{
-         revalidateOnFocus: false 
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false
     })
     return {
-        data
+        data,
+        isLoading
     }
 }
 export default useFilterMovies;

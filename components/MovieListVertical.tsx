@@ -4,6 +4,7 @@ import { divide, isEmpty } from 'lodash';
 import { Movie } from '../types/movie';
 import MovieCard from './MovieCard';
 import MovieCardVertical from './MovieCardVertical';
+import NoData from './NoData';
 
 interface MovieListVerticalProps {
   data: Movie[];
@@ -12,7 +13,7 @@ interface MovieListVerticalProps {
 
 const MovieListVertical: React.FC<MovieListVerticalProps> = ({ data, title }) => {
   if (isEmpty(data)) {
-    return null;
+    return <NoData />;
   }
 
   return (
@@ -42,7 +43,7 @@ const MovieListVertical: React.FC<MovieListVerticalProps> = ({ data, title }) =>
             gap-x-7
             gap-y-10
             ">
-          {[...data, ...data, ...data].map((movie) => (
+          {data.map((movie) => (
             <MovieCardVertical
               key={movie.id}
               id={movie.id}
