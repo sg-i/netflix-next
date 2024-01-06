@@ -6,9 +6,15 @@ import useCurrentUser from '../hooks/useCurrentUser';
 
 interface FavoriteButtonProps {
   movieId: string;
+  sizeSmall?: number;
+  sizeBig?: number;
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({
+  movieId,
+  sizeSmall = 6,
+  sizeBig = 10,
+}) => {
   const { mutate: mutateFavorites } = useFavorites();
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
 
@@ -40,13 +46,13 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
 
   return (
     <div
-      className="
+      className={`
     cursor-pointer
     group/item
-    w-6
-    h-6
-    lg:w-10
-    lg:h-10
+    w-${sizeSmall}
+    h-${sizeSmall}
+    lg:w-${sizeBig}
+    lg:h-${sizeBig}
     rounded-full
     border-2
     flex
@@ -54,9 +60,9 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
     items-center
     transition
     hover:border-neutral-400
-    "
+    `}
       onClick={toggleFavorites}>
-      <Icon className="text-white" size={30} />
+      <Icon className="text-white" size={sizeBig * 3} />
     </div>
   );
 };

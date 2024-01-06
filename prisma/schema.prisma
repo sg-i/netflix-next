@@ -65,6 +65,7 @@ model Movie{
   year Int
   videoUrl String
   thumbnailUrl String
+  thumbnailVerticalUrl String
   language String
   genre String
   duration String 

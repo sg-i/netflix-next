@@ -4,6 +4,7 @@ import NavbarItem from './NavbarItem';
 import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
 import AccountMenu from './AccountMenu';
 import { UserSession } from '../types/UserSession';
+import Link from 'next/link';
 const TOP_OFFSET = 66;
 
 interface NavbarProps {
@@ -58,7 +59,9 @@ const Navbar = ({ user }: NavbarProps) => {
            ${showBackground ? ' bg-zinc-900 bg-opacity-90' : ''}
             
             `}>
-        <img className="h-4 lg:h-7" src="/images/logo.png" alt="Logo" />
+        <Link href={'/'}>
+          <img className="h-4 lg:h-7" src="/images/logo.png" alt="Logo" />
+        </Link>
         <div
           className="
             flex-row

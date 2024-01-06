@@ -38,7 +38,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
     try {
         const checkAuth = await serverAuth(req, res);
-        const {genre, sort, typesort: typeSort} = req.query;
+        const {genre, sort, typesort: typeSort, search} = req.query;
         console.log(req.query)
         if(genre && sort && typeSort){
             // /api/movies?genre=action&sort=views&typesort=asc
@@ -46,11 +46,30 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 orderBy: generateSorting(sort, typeSort)
               };
               
-              if (genre !== 'All') {
+              if (genre !== 'All' && search !== '') {
+                // Если и genre, и search заданы
+                moviesQuery.where = {
+                  genre: generateGenre(genre),
+                  title: {
+                    contains: search,
+                    mode: 'insensitive',
+                  }
+                };
+              } else if (genre !== 'All') {
+                // Если задан только genre
                 moviesQuery.where = {
                   genre: generateGenre(genre)
                 };
+              } else if (search !== '') {
+                // Если задан только search
+                moviesQuery.where = {
+                  title: {
+                    contains: search,
+                    mode: 'insensitive',
+                  }
+                };
               }
+              console.log(moviesQuery)
             const movies = await prismadb.movie.findMany(moviesQuery)
             return res.status(200).json(movies)
         } else {
