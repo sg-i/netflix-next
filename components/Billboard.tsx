@@ -10,11 +10,15 @@ const Billboard = () => {
     openModal(data?.id);
   }, [openModal, data?.id]);
   return (
-    <div className="relative h-[56.25vw]">
+    <div
+      className="relative 
+      h-[60vh]
+      sm:h-[56.25vw]">
       <video
         className="
             w-full
-            h-[56.25vw]
+            h-[60vh]
+            sm:h-[56.25vw]
             object-cover
             brightness-[60%]
         "
@@ -45,7 +49,7 @@ const Billboard = () => {
         <p
           className="
             text-white
-            text-[8px]
+            text-sm
             md:text-lg
             mt-3
             md:mt-8
@@ -57,7 +61,7 @@ const Billboard = () => {
         </p>
         <div
           className="
-            flex flex-row items-center mt-3 md:mt-4 gap-3 h-11">
+            flex flex-row bg-red items-center mt-3 md:mt-4 gap-3 h-7 sm:h-11">
           <PlayButton movieId={data?.id} />
           <button
             onClick={handleOpenModal}

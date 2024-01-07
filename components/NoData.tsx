@@ -5,8 +5,8 @@ type NoDataProps = {};
 
 const NoData = ({}: NoDataProps) => {
   return (
-    <div className="text-white justify-start items-center flex flex-col h-[40vh] ">
-      <div className="text-center text-3xl">No movies found</div>
+    <div className=" justify-start items-center flex flex-col h-[40vh] ">
+      <div className="text-center text-gray-200 text-3xl">No movies found</div>
     </div>
   );
 };

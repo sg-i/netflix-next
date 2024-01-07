@@ -15,8 +15,10 @@ import Input from '../components/input';
 import { EventEmitter } from 'stream';
 import Search from '../components/Search';
 import Loading from '../components/Loading';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context: NextPageContext) {
+  console.log(context.query);
   const session = await getSession(context);
   if (!session) {
     return {
@@ -29,6 +31,7 @@ export async function getServerSideProps(context: NextPageContext) {
   return {
     props: {
       user: session.user,
+      // searchQuery: context.query.search || '',
     },
   };
 }
@@ -40,11 +43,12 @@ const genres = ['All', 'Action', 'Comedy', 'Sci-Fi', 'Adventure'];
 const sorts = ['Views', 'Title', 'Year'];
 const typesSorts = ['Ascending', 'Descending'];
 const Movies: React.FC<MoviesProps> = ({ user }) => {
+  const router = useRouter();
   const [activeGenre, setActiveGenre] = useState('All');
   const [sort, setSort] = useState('Views');
   const [typeSort, setTypeSort] = useState('Descending');
-  const [search, setSearch] = useState('');
-  const [searchText, setSearchText] = useState('');
+  const [search, setSearch] = useState(router.query.search || '');
+  const [searchText, setSearchText] = useState(router.query.search || '');
   const toggleActiveGenre = useCallback(
     (genre: string) => {
       setActiveGenre(genre);
@@ -87,6 +91,11 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
 
     return () => clearTimeout(delayDebounceFn);
   }, [search]);
+
+  useEffect(() => {
+    setSearchText(router.query.search || '');
+    setSearch(router.query.search || '');
+  }, [router.query]);
 
   return (
     <>

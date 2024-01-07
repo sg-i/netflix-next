@@ -6,7 +6,7 @@ interface filtersInterface{
     activeGenre: string;
     sort: string;
     typeSort: string;
-    search?: string;
+    search?: string | string[];
 }
 
 const useFilterMovies = (filters:filtersInterface)=>{

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface SearchProps {
   onChange: any;
-  value: string;
+  value: string | string[];
 }
 
 const Search: React.FC<SearchProps> = ({ value, onChange }) => {
