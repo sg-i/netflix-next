@@ -16,6 +16,7 @@ import { EventEmitter } from 'stream';
 import Search from '../components/Search';
 import Loading from '../components/Loading';
 import { useRouter } from 'next/router';
+import DropDownGenre from '../components/DropDownGenre';
 
 export async function getServerSideProps(context: NextPageContext) {
   console.log(context.query);
@@ -104,7 +105,7 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
       <div
         className="
           pt-24
-          px-3 sm:px-32 ">
+          px-3 sm:px-12 md:px-20 lg:px-32">
         <Search value={search} onChange={changeSearch} />
         <div
           className=" 
@@ -114,10 +115,12 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
             items-center">
           <div
             className="
+              hidden
               flex
               flex-row
               gap-6
-              text-white">
+              text-white
+              ">
             {genres.map((genre) => (
               <GenreFilterItem
                 key={genre}
@@ -127,7 +130,11 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
               />
             ))}
           </div>
-
+          <DropDownGenre
+            activeGenre={activeGenre}
+            toggleActiveGenre={toggleActiveGenre}
+            genres={genres}
+          />
           <DropDownSort
             typeSort={typeSort}
             toggleTypeSort={toggleTypeSort}
@@ -137,10 +144,6 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
         </div>
         <div className="pt-7">
           {isLoading ? <Loading /> : <MovieListVertical title="Movies" data={movies} />}
-
-          {/* {movies?.map((m: any) => (
-            <div key={m.id}>{m.title}</div>
-          ))} */}
         </div>
       </div>
     </>

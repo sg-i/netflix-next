@@ -65,14 +65,18 @@ const DropDownSort: React.FC<DropDownSortProps> = ({
         <button
           ref={dropdownButtonRef}
           onClick={toggleDropdown}
-          className="inline-flex justify-center w-full px-4 py-1  font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
-          <span>
-            {'Sort by: '}
+          className="inline-flex justify-center items-center w-full px-1 sm:px-4 py-1  font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
+          <span className="hidden sm:inline-flex">
+            <p>{'Sort by: '}</p>
+            <b>{sort}</b>
+          </span>
+          <span className="sm:hidden inline">
+            {'Sort: '}
             <b>{sort}</b>
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 ml-2 -mr-1"
+            className="w-5 h-5 ml-1 sm:ml-2 -mr-1"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true">

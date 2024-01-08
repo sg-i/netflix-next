@@ -17,14 +17,7 @@ const MovieListVertical: React.FC<MovieListVerticalProps> = ({ data, title }) =>
   }
 
   return (
-    <div
-    // className="
-    // px-4
-    // md:px-12
-    // mt-4
-    // space-y-8
-    // "
-    >
+    <div>
       <div className="pb-10">
         <p
           className="
@@ -36,14 +29,17 @@ const MovieListVertical: React.FC<MovieListVerticalProps> = ({ data, title }) =>
         </p>
         <div
           className="
+            /grid
+            /md:grid-cols-4 /lg:grid-cols-6
+
             flex
             flex-row
             flex-wrap
-           
             gap-x-7
             gap-y-10
+            bg-gray-800
             ">
-          {data.map((movie) => (
+          {[...data, ...data, ...data, ...data].map((movie) => (
             <MovieCardVertical
               key={movie.id}
               id={movie.id}

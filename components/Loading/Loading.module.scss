@@ -61,9 +61,11 @@ $size: 50px;
 
 .box {
   @include fill;
+  position: relative;
   width: 3em;
-  height: 2em;
+  height: 1em;
   margin: 30vmin auto;
+  top: -100px;
   font-size: $size;
   transform-style: preserve-3d;
   transform: rotateX(60deg) rotateZ(45deg);

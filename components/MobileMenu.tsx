@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 interface MobileMenuProps {
   visible?: boolean;
@@ -10,11 +11,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
   return (
     <div className="bg-black w-56 absolute top-12 py-5 flex-col border-2 border-gray-800 flex">
       <div className="flex flex-col gap-4">
-        <div className="px-3 text-center text-white hover:underline">Home</div>
-        <div className="px-3 text-center text-white hover:underline">Series</div>
-        <div className="px-3 text-center text-white hover:underline">Films</div>
-        <div className="px-3 text-center text-white hover:underline">New & Popular</div>
-        <div className="px-3 text-center text-white hover:underline">Browse bu Languages</div>
+        <Link href={'/'} className="px-3 text-center text-white hover:underline">
+          Home
+        </Link>
+        <Link href={'/movies'} className="px-3 text-center text-white hover:underline">
+          Movies
+        </Link>
+        <Link href={'/favorites'} className="px-3 text-center text-white hover:underline">
+          Favorites
+        </Link>
       </div>
     </div>
   );

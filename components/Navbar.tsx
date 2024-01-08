@@ -58,6 +58,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav
       className="
+        
         w-full
         fixed
         z-40
@@ -118,6 +119,8 @@ const Navbar = ({ user }: NavbarProps) => {
           <form
             onSubmit={handleSubmit}
             className="
+              focus:opacity-100
+              opacity-75
               flex 
               gap-3 
               flex-row 

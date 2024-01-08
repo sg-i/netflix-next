@@ -28,7 +28,17 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
   const router = useRouter();
   const { openModal } = useInfoModal();
   return (
-    <div className="group col-span  w-[12vw] shadow-xl relative transition hover:scale-105">
+    <div
+      className="
+      bg-red-100
+      group 
+      col-span  
+      w-[42vw] sm:w-[12vw] 
+      h-auto sm:h-auto
+      shadow-xl 
+      relative 
+      transition 
+      hover:scale-105">
       <img
         onClick={() => openModal(id)}
         className="
@@ -39,7 +49,7 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
             shadow-xl
             rounded-t-md
             w-full
-            h-[15vw]"
+            h-[65vw] sm:h-[15vw]"
         src={verticalImage}
         alt="Thumbnail"
       />
