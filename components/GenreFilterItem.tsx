@@ -18,6 +18,8 @@ const GenreFilterItem: React.FC<GenreFilterItemProps> = ({ title, active, onClic
             rounded-3xl
             border-violet-500
             hover:opacity-85
+            text-nowrap
+            overflow-hidden
             `}>
       {title}
     </div>

@@ -22,24 +22,23 @@ const MovieListVertical: React.FC<MovieListVerticalProps> = ({ data, title }) =>
         <p
           className="
             text-white
-            text-md md:text-xl lg:text-2xl
-            font-semibold
-            mb-4">
+            text-lg sm:text-md md:text-xl lg:text-2xl
+            font-base sm:font-semibold
+            mb-2 sm:mb-4">
           {title}
         </p>
         <div
           className="
-            /grid
-            /md:grid-cols-4 /lg:grid-cols-6
-
-            flex
-            flex-row
-            flex-wrap
+            items-center
+            grid
+            grid-cols-2 sm:grid-cols-3 md:grid-cols-4
+            lg:flex
+            lg:flex-row
+            lg:flex-wrap
             gap-x-7
             gap-y-10
-            bg-gray-800
             ">
-          {[...data, ...data, ...data, ...data].map((movie) => (
+          {data.map((movie) => (
             <MovieCardVertical
               key={movie.id}
               id={movie.id}

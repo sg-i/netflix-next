@@ -18,7 +18,7 @@ const DropDownGenre: React.FC<DropDownGenreProps> = ({
     toggleActiveGenre(e.target.value);
   };
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center lg:hidden">
       <label className="text-white mr-2 text-lg" htmlFor="select-genre">
         Genre:
       </label>
@@ -28,7 +28,7 @@ const DropDownGenre: React.FC<DropDownGenreProps> = ({
         className="rounded-md text-lg py-[3px]"
         id="select-genre">
         {genres.map((genre) => (
-          <option className="" value={genre}>
+          <option key={genre} className="" value={genre}>
             {genre}
           </option>
         ))}

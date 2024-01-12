@@ -62,18 +62,19 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
     },
     [sort],
   );
-  const toggleTypeSort = useCallback(
-    (newTypeSort: string) => {
-      setTypeSort(newTypeSort);
-    },
-    [typeSort],
-  );
   const { data: movies = [], isLoading } = useFilterMovies({
     activeGenre,
     sort,
     typeSort,
     search: searchText,
   });
+  const toggleTypeSort = useCallback(
+    (newTypeSort: string) => {
+      setTypeSort(newTypeSort);
+    },
+    [typeSort],
+  );
+
   const { isOpen, closeModal } = useInfoModal();
 
   let timerId: NodeJS.Timeout;
@@ -103,9 +104,10 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar user={user} />
       <div
-        className="
-          pt-24
-          px-3 sm:px-12 md:px-20 lg:px-32">
+        className={`
+          pt-16 sm:pt-24
+          px-3 sm:px-12 md:px-20 lg:px-32
+          `}>
         <Search value={search} onChange={changeSearch} />
         <div
           className=" 
@@ -116,10 +118,11 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
           <div
             className="
               hidden
-              flex
+              lg:flex
               flex-row
               gap-6
               text-white
+              overflow-auto
               ">
             {genres.map((genre) => (
               <GenreFilterItem
@@ -142,7 +145,7 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
             sort={sort}
           />
         </div>
-        <div className="pt-7">
+        <div className="pt-3 sm:pt-7">
           {isLoading ? <Loading /> : <MovieListVertical title="Movies" data={movies} />}
         </div>
       </div>

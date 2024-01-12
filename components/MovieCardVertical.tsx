@@ -15,7 +15,10 @@ type MovieCardVerticalProps = {
   genre: string;
   year: number;
 };
-
+const size = 9;
+const sizeSm = 6;
+const sizeMd = 7;
+const sizeLg = 8;
 const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
   id,
   title,
@@ -27,14 +30,16 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
 }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
+
   return (
     <div
       className="
-      bg-red-100
+      flex
+      flex-col
       group 
       col-span  
-      w-[42vw] sm:w-[12vw] 
-      h-auto sm:h-auto
+      w-[42vw] sm:w-[24vw] md:w-[18vw] lg:w-[12vw]
+      h-auto 
       shadow-xl 
       relative 
       transition 
@@ -49,7 +54,7 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
             shadow-xl
             rounded-t-md
             w-full
-            h-[65vw] sm:h-[15vw]"
+            h-[65vw] sm:h-[34vw] md:h-[25vw] lg:h-[15vw]"
         src={verticalImage}
         alt="Thumbnail"
       />
@@ -66,34 +71,36 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
             ">
         <div className="flex flex-row items-center gap-3">
           <div
-            className="
+            className={`
                 cursor-pointer
                 bg-white
-                w-4 
-                h-4 
-                lg:h-8 
-                lg:w-8 
+                w-${size} sm:w-${sizeSm} md:w-${sizeMd} lg:w-${sizeLg} 
+                h-${size} sm:h-${sizeSm} md:h-${sizeMd} lg:h-${sizeLg}  
                 rounded-full
                 flex
                 justify-center
                 items-center
                 transition
                 hover:bg-neutral-300
-                "
+                `}
             onClick={() => router.push(`/watch/${id}`)}>
-            <BsFillPlayFill className="mr-[-3px]" size={30} />
+            <BsFillPlayFill className="text-3xl sm:text-2xl mr-[-3px]" />
           </div>
-          <FavoriteButton sizeBig={8} sizeSmall={4} movieId={id} />
+          <FavoriteButton
+            size={size}
+            sizeSm={sizeSm}
+            sizeMd={sizeMd}
+            sizeLg={sizeLg}
+            movieId={id}
+          />
           <div
             onClick={() => openModal(id)}
-            className="
+            className={`
                 cursor-pointer 
                 ml-auto 
                 group/item 
-                w-4 
-                h-4 
-                lg:h-8 
-                lg:w-8 
+                w-${size} sm:w-${sizeSm} md:w-${sizeMd} lg:w-${sizeLg} 
+                h-${size} sm:h-${sizeSm} md:h-${sizeMd} lg:h-${sizeLg}  
                 border-white 
                 border-2 
                 rounded-full 
@@ -101,18 +108,20 @@ const MovieCardVertical: React.FC<MovieCardVerticalProps> = ({
                 justify-center 
                 items-center 
                 transition 
-                hover:border-neutral-300">
-            <BiChevronDown size={30} className="text-white group-hover/item:text-neutral-300 " />
+                hover:border-neutral-300`}>
+            <BiChevronDown className="text-white group-hover/item:text-neutral-300 text-3xl sm:text-2xl" />
           </div>
         </div>
 
-        <p className="text-white text-base font-semibold mt-2">{title}</p>
+        <p className="text-white text-lg sm:text-base font-semibold mt-2 text-nowrap overflow-hidden">
+          {title}
+        </p>
 
-        <div className="flex flex-row justify-between mt-2 gap-2 items-center">
+        <div className="flex flex-row justify-between mt-0 sm:mt-2 gap-2 items-center">
           <p className="text-white text-[15px] lg:text-sm">{genre}</p>
         </div>
-        <div className="flex flex-row justify-between mt-1 gap-2 items-center">
-          <p className="text-green-400  ">
+        <div className="flex flex-row justify-between mt-0 sm:mt-1 gap-2 items-center">
+          <p className="text-green-400">
             <span className="text-white">{year}</span>
           </p>
           <p className="text-white  ">{duration}</p>
