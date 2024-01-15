@@ -1,6 +1,7 @@
 DEMO: https://netflix-next-sg-i.vercel.app/
 
-.env:
+# .env:
+```
 DATABASE_URL=
 NEXTAUTH_JWT_SECRET=
 NEXTAUTH_SECRET=
@@ -15,3 +16,4 @@ EMAIL_HOST=
 EMAIL_HOST_PASSWORD=
 EMAIL_HOST_USER=
 EMAIL_PORT=
+```
