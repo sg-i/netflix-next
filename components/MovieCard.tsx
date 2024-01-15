@@ -14,13 +14,18 @@ type MovieCardProps = {
   genre: string;
   year: number;
 };
+const size = 9;
+const sizeSm = 6;
+const sizeMd = 7;
+const sizeLg = 8;
 
 const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre, year }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
   return (
-    <div className="group col-span h-[13vw] relative">
+    <div className="group col-span h-[25vw] md:h-[13vw] relative">
       <img
+        onClick={() => openModal(id)}
         className="
         cursor-pointer 
         object-cover
@@ -31,7 +36,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
         group-hover:opacity-90
         sm:group-hover:opacity-0
         w-full
-        h-[13vw]
+        h-[25vw] md:h-[13vw]
         "
         alt="Movie thumbnail"
         src={image}
@@ -62,7 +67,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
             shadow-xl
             rounded-t-md
             w-full
-            h-[13vw]"
+            h-[25vw] sm:h-[13vw]"
           src={image}
           alt="Thumbnail"
         />
@@ -80,34 +85,36 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
             ">
           <div className="flex flex-row items-center gap-3">
             <div
-              className="
+              className={`
                 cursor-pointer
                 bg-white
-                w-6
-                h-6
-                lg:w-10
-                lg:h-10
+                w-${size} sm:w-${sizeSm} md:w-${sizeMd} lg:w-${sizeLg} 
+                h-${size} sm:h-${sizeSm} md:h-${sizeMd} lg:h-${sizeLg}  
                 rounded-full
                 flex
                 justify-center
                 items-center
                 transition
                 hover:bg-neutral-300
-                "
+                `}
               onClick={() => router.push(`/watch/${id}`)}>
               <BsFillPlayFill className="mr-[-3px]" size={30} />
             </div>
-            <FavoriteButton movieId={id} />
+            <FavoriteButton
+              size={size}
+              sizeSm={sizeSm}
+              sizeMd={sizeMd}
+              sizeLg={sizeLg}
+              movieId={id}
+            />
             <div
               onClick={() => openModal(id)}
-              className="
+              className={`
                 cursor-pointer 
                 ml-auto 
                 group/item 
-                w-6 
-                h-6 
-                lg:h-10 
-                lg:w-10 
+                w-${size} sm:w-${sizeSm} md:w-${sizeMd} lg:w-${sizeLg} 
+                h-${size} sm:h-${sizeSm} md:h-${sizeMd} lg:h-${sizeLg}  
                 border-white 
                 border-2 
                 rounded-full 
@@ -115,7 +122,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
                 justify-center 
                 items-center 
                 transition 
-                hover:border-neutral-300">
+                hover:border-neutral-300`}>
               <BiChevronDown size={30} className="text-white group-hover/item:text-neutral-300 " />
             </div>
           </div>

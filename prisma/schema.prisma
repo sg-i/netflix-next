@@ -20,6 +20,13 @@ model User {
   sessions Session[]
   accounts Account[]
 }
+model EmailVerification{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  code String 
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
 
 model Account {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -27,7 +34,7 @@ model Account {
   type String
   provider String
   providerAccountId String
-  refresh_toker String? @db.String
+  refresh_token String? @db.String
   access_token String? @db.String
   expires_at Int?
   token_type String?

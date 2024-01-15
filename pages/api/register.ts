@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt' 
 import {NextApiRequest, NextApiResponse} from 'next'
 import prismadb from '../../lib/prismadb'
+import { verifyEmailCode } from '../../lib/verify-email-code';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse){
     if(req.method!=='POST'){
@@ -8,7 +9,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
     }
 
     try {
-        const {email, name, password} = req.body;
+        const {email, name, password, code} = req.body;
 
         const existingUser = await prismadb.user.findUnique({
             where:{
@@ -21,6 +22,12 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
         }
 
         const hashedPassword = await bcrypt.hash(password,12);
+
+        const isCodeVerified = await verifyEmailCode(email, code)
+        console.log(isCodeVerified)
+        if(!isCodeVerified){
+            return res.status(422).json({error: "code is invalid"})
+        }
 
         const user= await prismadb.user.create({
             data:{

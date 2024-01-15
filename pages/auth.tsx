@@ -1,8 +1,9 @@
 import axios from 'axios';
 import Input from '../components/input';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import crypto from 'crypto';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
@@ -16,6 +17,11 @@ const Auth = () => {
 
   const [variant, setVariant] = useState('login');
 
+  //verification email
+  const [verificationCode, setVerificationCode] = useState('');
+  const [codeWasSended, setCodeWasSended] = useState(false);
+  const [emailWasVerifyed, setEmailWasVerifyed] = useState(false);
+
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) => (currentVariant === 'login' ? 'register' : 'login'));
   }, []);
@@ -26,7 +32,7 @@ const Auth = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: '/profiles',
+        callbackUrl: '/',
       });
       router.push('/');
     } catch (error) {
@@ -40,12 +46,24 @@ const Auth = () => {
         email,
         name,
         password,
+        code: verificationCode,
       });
       login();
     } catch (error) {
       console.log(error);
     }
   }, [email, name, password, login]);
+
+  const sendVerificationCode = useCallback(async () => {
+    try {
+      await axios.post('/api/email/send-verification-code', {
+        email,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    setCodeWasSended(true);
+  }, [email]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -74,6 +92,29 @@ const Auth = () => {
                 type="email"
                 value={email}
               />
+              {variant === 'register' && email.includes('@') && (
+                <div className="flex flex-row gap-4  items-center justify-end">
+                  <button
+                    onClick={sendVerificationCode}
+                    className="rounded-md bg-white text-nowrap p-1">
+                    Send Code
+                  </button>
+                  {codeWasSended && (
+                    <>
+                      <div className="">
+                        <Input
+                          disabled={!codeWasSended}
+                          label="Verification Code for Email"
+                          onChange={(ev: any) => setVerificationCode(ev.target.value)}
+                          id="codeVerification"
+                          type="name"
+                          value={verificationCode}
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
               <Input
                 label="Password"
                 onChange={(ev: any) => setPassword(ev.target.value)}
@@ -84,7 +125,7 @@ const Auth = () => {
             </div>
             <button
               onClick={variant === 'login' ? login : register}
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+              className="bg-red-600 py-3 disabled:bg-red-900 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
               {variant === 'login' ? 'Login' : 'Sign up'}
             </button>
             <div className="w-full mt-10 flex flex-row justify-center gap-5 items-center">

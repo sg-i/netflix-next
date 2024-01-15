@@ -40,10 +40,14 @@ const User = ({ user }: UserProps) => {
         oldPassword,
         newPassword,
       });
+      setOldPassword('');
+      setNewPassword('');
     } catch (error) {
       console.log(error);
     }
   }, [email, oldPassword, newPassword]);
+
+  const cancel = () => {};
   return (
     <>
       <Navbar user={user} />
@@ -58,7 +62,8 @@ const User = ({ user }: UserProps) => {
                 <img alt="User image" src={user.image ? user.image : '/images/default-blue.png'} />
               </div>
               <div>{user.name}</div>
-              <button className="bg-red-700  py-2 px-4 rounded-md">Change a picture</button>
+              <div>{user.email}</div>
+              {/* <button className="bg-red-700  py-2 px-4 rounded-md">Change a picture</button> */}
             </div>
             <div className=" flex flex-col gap-4 m-auto ">
               <p className="text-xl">Settings</p>
@@ -94,7 +99,9 @@ const User = ({ user }: UserProps) => {
                   className="bg-red-700 font-semibold *:py-2 px-4 flex-1 rounded-md text-nowrap">
                   Save
                 </button>
-                <button className="bg-zinc-400 font-semibold text-black py-2 px-4 flex-1 rounded-md">
+                <button
+                  onClick={cancel}
+                  className="bg-zinc-400 font-semibold text-black py-2 px-4 flex-1 rounded-md">
                   Cansel
                 </button>
               </div>
