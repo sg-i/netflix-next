@@ -58,53 +58,45 @@ const User = ({ user }: UserProps) => {
         <div className="pt-7 text-white  container flex">
           <div className="m-auto flex flex-row  gap-10 p-7 rounded-xl bg-zinc-800 shadow-xl">
             <div className=" flex flex-col items-center gap-5">
-              <div className="w-32 h-32 rounded-md overflow-hidden">
-                <img alt="User image" src={user.image ? user.image : '/images/default-blue.png'} />
-              </div>
+              <img
+                className="w-28 h-28  rounded-md overflow-hidden"
+                alt="User image"
+                src={user.image ? user.image : '/images/default-blue.png'}
+              />
               <div>{user.name}</div>
               <div>{user.email}</div>
               {/* <button className="bg-red-700  py-2 px-4 rounded-md">Change a picture</button> */}
             </div>
             <div className=" flex flex-col gap-4 m-auto ">
-              <p className="text-xl">Settings</p>
-              {/* <Input
-                label="Username"
-                onChange={(ev: any) => setName(ev.target.value)}
-                id="name"
-                value={name}
-              />
-              <Input
-                label="Email"
-                onChange={(ev: any) => setEmail(ev.target.value)}
-                id="email"
-                value={email}
-              /> */}
-              <Input
-                label="Old Password"
-                onChange={(ev: any) => setOldPassword(ev.target.value)}
-                id="oldpassword"
-                type="password"
-                value={oldPassword}
-              />
-              <Input
-                label="New Password"
-                onChange={(ev: any) => setNewPassword(ev.target.value)}
-                id="newpassword"
-                type="password"
-                value={newPassword}
-              />
-              <div className="flex flex-row  gap-5 mt-4">
-                <button
-                  onClick={changePassword}
-                  className="bg-red-700 font-semibold *:py-2 px-4 flex-1 rounded-md text-nowrap">
-                  Save
-                </button>
-                <button
-                  onClick={cancel}
-                  className="bg-zinc-400 font-semibold text-black py-2 px-4 flex-1 rounded-md">
-                  Cansel
-                </button>
-              </div>
+              <>
+                <p className="text-xl">Settings</p>
+                <Input
+                  label="Old Password"
+                  onChange={(ev: any) => setOldPassword(ev.target.value)}
+                  id="oldpassword"
+                  type="password"
+                  value={oldPassword}
+                />
+                <Input
+                  label="New Password"
+                  onChange={(ev: any) => setNewPassword(ev.target.value)}
+                  id="newpassword"
+                  type="password"
+                  value={newPassword}
+                />
+                <div className="flex flex-row  gap-5 mt-4">
+                  <button
+                    onClick={changePassword}
+                    className="bg-red-700 font-semibold *:py-2 px-4 flex-1 rounded-md text-nowrap">
+                    Save
+                  </button>
+                  <button
+                    onClick={cancel}
+                    className="bg-zinc-400 font-semibold text-black py-2 px-4 flex-1 rounded-md">
+                    Cansel
+                  </button>
+                </div>
+              </>
             </div>
           </div>
         </div>

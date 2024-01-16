@@ -28,7 +28,6 @@ function generateSorting(sort:string | string[], typeSort: string | string[]){
 function generateGenre(genre: string | string[]){
     const validateGenre = typeof genre ==='string' ? genre : genre[0]
     const genreWithUpperCase = validateGenre.charAt(0).toUpperCase() + validateGenre.slice(1);
-    console.log('val',genreWithUpperCase)
     return genreWithUpperCase
 }
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
@@ -39,7 +38,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         const checkAuth = await serverAuth(req, res);
         const {genre, sort, typesort: typeSort, search} = req.query;
-        console.log(req.query)
         if(genre && sort && typeSort){
             // /api/movies?genre=action&sort=views&typesort=asc
             const moviesQuery: any = {
@@ -69,7 +67,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                   }
                 };
               }
-              console.log(moviesQuery)
             const movies = await prismadb.movie.findMany(moviesQuery)
             return res.status(200).json(movies)
         } else {

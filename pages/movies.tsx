@@ -19,7 +19,6 @@ import { useRouter } from 'next/router';
 import DropDownGenre from '../components/DropDownGenre';
 
 export async function getServerSideProps(context: NextPageContext) {
-  console.log(context.query);
   const session = await getSession(context);
   if (!session) {
     return {

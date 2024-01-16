@@ -14,7 +14,6 @@ export async function verifyEmailCode(email: string, code: string){
     if ((now.getTime()-emailVerification.updateAt.getTime()) > 86400000) {
         throw new Error('The code is outdated')
     }
-    console.log('code',emailVerification.code, code, emailVerification.code==code)
     if(emailVerification.code==code){
         return true
     } else {

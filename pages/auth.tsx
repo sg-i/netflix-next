@@ -131,14 +131,14 @@ const Auth = () => {
             <div className="w-full mt-10 flex flex-row justify-center gap-5 items-center">
               <div
                 onClick={() => {
-                  signIn('google', { callbackUrl: '/profiles' });
+                  signIn('google', { callbackUrl: '/' });
                 }}
                 className="bg-white w-10 h-10 flex justify-center items-center cursor-pointer rounded-full hover:opacity-80 transition">
                 <FcGoogle size={30} />
               </div>
               <div
                 onClick={() => {
-                  signIn('github', { callbackUrl: '/profiles' });
+                  signIn('github', { callbackUrl: '/' });
                 }}
                 className="bg-white w-10 h-10 flex justify-center items-center cursor-pointer rounded-full hover:opacity-80 transition">
                 <FaGithub size={30} />

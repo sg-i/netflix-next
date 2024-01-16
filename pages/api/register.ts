@@ -24,7 +24,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
         const hashedPassword = await bcrypt.hash(password,12);
 
         const isCodeVerified = await verifyEmailCode(email, code)
-        console.log(isCodeVerified)
+
         if(!isCodeVerified){
             return res.status(422).json({error: "code is invalid"})
         }

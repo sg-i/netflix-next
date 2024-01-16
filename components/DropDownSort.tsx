@@ -23,7 +23,6 @@ const DropDownSort: React.FC<DropDownSortProps> = ({
   // Function to toggle the dropdown
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    console.log('drop');
   };
 
   // Close the dropdown when clicking outside of it

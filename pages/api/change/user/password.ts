@@ -15,11 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             })
 
             if(!existingUser  ){
-                console.log('email wrong')
                 return res.status(422).json({error:'Email doesnt exist'});
             }
             if(!existingUser.hashedPassword){
-                console.log('you was registered with OAuth')
                 return res.status(422).json({error:'you was registered with OAuth'});
             }
            
@@ -29,9 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 oldPassword, 
                 existingUser.hashedPassword
             );
-            console.log(isCorrectPassword)
             if(!isCorrectPassword){
-                console.log('wrong pass')
                 return res.status(422).json({error: 'Wrong old password'});
             }
 
@@ -45,8 +41,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     hashedPassword: hashedNewPassword
                 },
             })
-            console.log("it's okay")
-            
             return res.status(200).json({'message': 'done'});
         }
         return res.status(405).end();

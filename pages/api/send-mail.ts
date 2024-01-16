@@ -13,9 +13,7 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
   if (req.method === 'POST') {
     sendMail(to, subject, text, html)
       .then((info)=>{
-        console.log(info);
         res.status(200).json('lol')
-
       })
       .catch((error)=>{
         console.log(error);
