@@ -9,8 +9,9 @@ interface AccountMenuProps {
 }
 
 const AccountMenu: React.FC<AccountMenuProps> = ({ visible, username, image }) => {
-  if (!visible) return null;
   const router = useRouter();
+
+  if (!visible) return null;
   return (
     <div className="bg-black w-56 absolute top-14 right-0 py-5 flex-col border-2 border-gray-800 flex">
       <div className="flex flex-col gap-2 ">

@@ -49,40 +49,28 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
   const [typeSort, setTypeSort] = useState('Descending');
   const [search, setSearch] = useState(router.query.search || '');
   const [searchText, setSearchText] = useState(router.query.search || '');
-  const toggleActiveGenre = useCallback(
-    (genre: string) => {
-      setActiveGenre(genre);
-    },
-    [activeGenre],
-  );
-  const toggleSort = useCallback(
-    (newSort: string) => {
-      setSort(newSort);
-    },
-    [sort],
-  );
+  const toggleActiveGenre = (genre: string) => {
+    setActiveGenre(genre);
+  };
+  const toggleSort = (newSort: string) => {
+    setSort(newSort);
+  };
   const { data: movies = [], isLoading } = useFilterMovies({
     activeGenre,
     sort,
     typeSort,
     search: searchText,
   });
-  const toggleTypeSort = useCallback(
-    (newTypeSort: string) => {
-      setTypeSort(newTypeSort);
-    },
-    [typeSort],
-  );
+  const toggleTypeSort = (newTypeSort: string) => {
+    setTypeSort(newTypeSort);
+  };
 
   const { isOpen, closeModal } = useInfoModal();
 
   let timerId: NodeJS.Timeout;
-  const changeSearch = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setSearch(e.target.value);
-    },
-    [search],
-  );
+  const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   // timeout for search
   useEffect(() => {

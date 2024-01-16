@@ -52,7 +52,7 @@ const Auth = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [email, name, password, login]);
+  }, [email, name, password, login, verificationCode]);
 
   const sendVerificationCode = useCallback(async () => {
     try {
