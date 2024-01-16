@@ -101,7 +101,7 @@ const DropDownSort: React.FC<DropDownSortProps> = ({
                 toggleSort('Views');
                 toggleDropdown();
               }}
-              className={`flex flex-row block items-center gap-2 ${
+              className={`flex flex-row  items-center gap-2 ${
                 sort == 'Views' ? 'font-bold text-black' : 'text-gray-700'
               } rounded-md px-4 py-2 text-base  hover:bg-gray-100 active:bg-blue-100 cursor-pointer`}
               role="menuitem">
@@ -116,7 +116,7 @@ const DropDownSort: React.FC<DropDownSortProps> = ({
                 toggleSort('Title');
                 toggleDropdown();
               }}
-              className={`flex flex-row block items-center gap-2 block ${
+              className={`flex flex-row  items-center gap-2  ${
                 sort == 'Title' ? 'font-bold text-black' : 'text-gray-700'
               } rounded-md px-4 py-2 text-base  hover:bg-gray-100 active:bg-blue-100 cursor-pointer`}
               role="menuitem">
@@ -132,7 +132,7 @@ const DropDownSort: React.FC<DropDownSortProps> = ({
                 toggleSort('Year');
                 toggleDropdown();
               }}
-              className={`flex flex-row block items-center gap-2 ${
+              className={`flex flex-row  items-center gap-2 ${
                 sort == 'Year' ? 'font-bold text-black' : 'text-gray-700'
               } rounded-md px-4 py-2 text-base  hover:bg-gray-100 active:bg-blue-100 cursor-pointer`}
               role="menuitem">
