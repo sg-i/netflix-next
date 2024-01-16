@@ -9,6 +9,10 @@ interface InfoModalProps {
   visible?: boolean;
   onClose: any;
 }
+const size = 9;
+const sizeSm = 6;
+const sizeMd = 7;
+const sizeLg = 8;
 
 const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(!!visible);
@@ -113,7 +117,13 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
               </p>
               <div className="flex flex-row gap-4 items-center">
                 <PlayButton movieId={data?.id} />
-                <FavoriteButton movieId={data?.id} />
+                <FavoriteButton
+                  size={size}
+                  sizeSm={sizeSm}
+                  sizeMd={sizeMd}
+                  sizeLg={sizeLg}
+                  movieId={data?.id}
+                />
               </div>
             </div>
           </div>
