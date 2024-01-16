@@ -6,17 +6,20 @@ interface InputProps {
   value: string;
   label: string;
   type?: string;
+  disabled?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
+const Input: React.FC<InputProps> = ({ id, onChange, value, label, type, disabled = false }) => {
   return (
     <div className="relative">
       <input
+        disabled={disabled}
         id={id}
         value={value}
         type={type}
         onChange={onChange}
         className="
+            disabled:opacity-65
             block 
             rounded-md 
             px-6 pt-6 
@@ -32,6 +35,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
       />
       <label
         className="
+            cursor-text
             absolute text-md 
             text-zinc-400 
             duration-150 
