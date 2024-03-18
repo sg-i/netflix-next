@@ -13,7 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     email: email
                 }
             })
-
+            if(existingUser?.email=='guest@gmail.com' || email=='guest@gmail.com'){
+                return res.status(422).json({error:'Guest cannot change password'});
+            }
             if(!existingUser  ){
                 return res.status(422).json({error:'Email doesnt exist'});
             }
