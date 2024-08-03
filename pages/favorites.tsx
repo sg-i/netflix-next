@@ -4,7 +4,7 @@ import React from 'react';
 import InfoModal from '../components/InfoModal';
 import Navbar from '../components/Navbar';
 import useInfoModal from '../hooks/useInfoModal';
-import { UserSession } from '../types/UserSession';
+import { UserSession } from '../types/userSession';
 import MovieListVertical from '../components/MovieListVertical';
 import useFavorites from '../hooks/useFavorites';
 import Loading from '../components/Loading';

@@ -3,7 +3,7 @@ import { MobileMenu } from './MobileMenu';
 import NavbarItem from './NavbarItem';
 import { BsChevronDown, BsSearch } from 'react-icons/bs';
 import AccountMenu from './AccountMenu';
-import { UserSession } from '../types/UserSession';
+import { UserSession } from '../types/userSession';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 const TOP_OFFSET = 66;

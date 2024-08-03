@@ -2,7 +2,7 @@ import { NextPageContext } from 'next';
 import { getSession } from 'next-auth/react';
 import React, { useCallback, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { UserSession } from '../types/UserSession';
+import { UserSession } from '../types/userSession';
 import Input from '../components/input';
 import axios from 'axios';
 
