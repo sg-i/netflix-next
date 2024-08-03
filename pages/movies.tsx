@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { UserSession } from '../types/userSession';
+import { UserSession } from '../types/UserSession';
 import Navbar from '../components/Navbar';
 import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';

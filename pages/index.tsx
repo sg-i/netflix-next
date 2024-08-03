@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Billboard from '../components/Billboard';
 import useMovieList from '../hooks/useMovieList';
 import MovieList from '../components/MovieList';
-import { UserSession } from '../types/userSession';
+import { UserSession } from '../types/UserSession';
 import useFavorites from '../hooks/useFavorites';
 import InfoModal from '../components/InfoModal';
 import useInfoModal from '../hooks/useInfoModal';
