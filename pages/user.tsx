@@ -28,7 +28,6 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const User = ({ user }: UserProps) => {
-  const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -65,7 +64,6 @@ const User = ({ user }: UserProps) => {
               />
               <div>{user.name}</div>
               <div>{user.email}</div>
-              {/* <button className="bg-red-700  py-2 px-4 rounded-md">Change a picture</button> */}
             </div>
             <div className=" flex flex-col gap-4 m-auto ">
               <>

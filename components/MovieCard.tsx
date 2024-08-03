@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import React from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { BiChevronDown } from 'react-icons/bi';
 import FavoriteButton from './FavoriteButton';
-import PlayButton from './PlayButton';
 import { useRouter } from 'next/router';
 import useInfoModal from '../hooks/useInfoModal';
 type MovieCardProps = {

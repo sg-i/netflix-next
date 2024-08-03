@@ -1,18 +1,14 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { UserSession } from '../types/UserSession';
 import Navbar from '../components/Navbar';
 import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import GenreFilterItem from '../components/GenreFilterItem';
-import useMovie from '../hooks/useMovie';
 import useFilterMovies from '../hooks/useFilterMovies';
-import MovieList from '../components/MovieList';
 import InfoModal from '../components/InfoModal';
 import useInfoModal from '../hooks/useInfoModal';
 import DropDownSort from '../components/DropDownSort';
 import MovieListVertical from '../components/MovieListVertical';
-import Input from '../components/input';
-import { EventEmitter } from 'stream';
 import Search from '../components/Search';
 import Loading from '../components/Loading';
 import { useRouter } from 'next/router';
@@ -31,7 +27,6 @@ export async function getServerSideProps(context: NextPageContext) {
   return {
     props: {
       user: session.user,
-      // searchQuery: context.query.search || '',
     },
   };
 }
@@ -40,8 +35,6 @@ interface MoviesProps {
   user: UserSession;
 }
 const genres = ['All', 'Action', 'Comedy', 'Sci-Fi', 'Adventure'];
-const sorts = ['Views', 'Title', 'Year'];
-const typesSorts = ['Ascending', 'Descending'];
 const Movies: React.FC<MoviesProps> = ({ user }) => {
   const router = useRouter();
   const [activeGenre, setActiveGenre] = useState('All');
@@ -67,12 +60,10 @@ const Movies: React.FC<MoviesProps> = ({ user }) => {
 
   const { isOpen, closeModal } = useInfoModal();
 
-  let timerId: NodeJS.Timeout;
   const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  // timeout for search
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       setSearchText(search);

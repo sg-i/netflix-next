@@ -1,4 +1,3 @@
-import { toNumber } from 'lodash';
 import nodemailer from 'nodemailer'
 import { env } from 'process';
 

@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import {User} from '../types/user'
 import fetcher from '../lib/fetcher';
 
 const useCurrentUser=()=>{

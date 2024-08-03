@@ -1,6 +1,5 @@
 import { NextPageContext } from 'next';
 import { getSession } from 'next-auth/react';
-import useCurrentUser from '../hooks/useCurrentUser';
 import Navbar from '../components/Navbar';
 import Billboard from '../components/Billboard';
 import useMovieList from '../hooks/useMovieList';

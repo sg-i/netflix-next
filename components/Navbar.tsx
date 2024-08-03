@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { MobileMenu } from './MobileMenu';
 import NavbarItem from './NavbarItem';
-import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
+import { BsChevronDown, BsSearch } from 'react-icons/bs';
 import AccountMenu from './AccountMenu';
 import { UserSession } from '../types/UserSession';
 import Link from 'next/link';
@@ -16,7 +16,6 @@ const Navbar = ({ user }: NavbarProps) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +57,6 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav
       className="
-        
         w-full
         fixed
         z-40
@@ -74,7 +72,6 @@ const Navbar = ({ user }: NavbarProps) => {
             transition
             duration-500
            ${showBackground ? ' bg-zinc-900 bg-opacity-90' : ''}
-            
             `}>
         <Link href={'/'}>
           <img className="h-4 lg:h-7" src="/images/logo.png" alt="Logo" />
@@ -91,11 +88,8 @@ const Navbar = ({ user }: NavbarProps) => {
             md:flex
           ">
           <NavbarItem path="/" label="Home" />
-          {/* <NavbarItem label="Series" /> */}
           <NavbarItem path="/movies" label="Movies" />
-          {/* <NavbarItem label="New & Popular" /> */}
           <NavbarItem path="/favorites" label="My List" />
-          {/* <NavbarItem label="Browse by languages" /> */}
         </div>
         <div
           onClick={toggleMobileMenu}
@@ -148,9 +142,6 @@ const Navbar = ({ user }: NavbarProps) => {
               <BsSearch className="" />
             </div>
           </form>
-          {/* <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsBell />
-          </div> */}
           <div
             onClick={toggleAccountMenu}
             className="flex flex-row items-center gap-2 cursor-pointer relative">

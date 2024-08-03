@@ -58,8 +58,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
             })
         }
 
-        // const hashedPassword = await bcrypt.hash(password,12);
-
         const sendedMail = await sendMail(
             email, 
             'Verification Code',

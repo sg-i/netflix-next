@@ -20,7 +20,6 @@ type Props = {};
 const Loading = (props: Props) => {
   return (
     <div className={styles.intro}>
-      {/* <div className={styles.info}></div> */}
       <Box />
     </div>
   );

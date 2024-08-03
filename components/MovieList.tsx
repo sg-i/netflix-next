@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { divide, isEmpty } from 'lodash';
-import { Movie } from '../types/movie';
+import { Movie } from '../types/Movie';
 import MovieCard from './MovieCard';
 
 interface MovieListProps {

@@ -1,8 +1,4 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { BsEye } from 'react-icons/bs';
-import { FaSortAmountDown, FaSortAmountUp, FaEye } from 'react-icons/fa';
-import { BsAlphabet, BsCalendarDate } from 'react-icons/bs';
-import { TiSortAlphabetically } from 'react-icons/ti';
 interface DropDownGenreProps {
   genres: string[];
   activeGenre: string;

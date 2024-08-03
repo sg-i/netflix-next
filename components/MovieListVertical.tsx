@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { divide, isEmpty } from 'lodash';
-import { Movie } from '../types/movie';
-import MovieCard from './MovieCard';
+import { Movie } from '../types/Movie';
 import MovieCardVertical from './MovieCardVertical';
 import NoData from './NoData';
 

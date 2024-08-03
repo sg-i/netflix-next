@@ -1,6 +1,5 @@
 import React from 'react';
 import { signOut } from 'next-auth/react';
-import { User } from '../types/user';
 import { useRouter } from 'next/router';
 interface AccountMenuProps {
   visible?: boolean;

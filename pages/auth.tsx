@@ -1,9 +1,8 @@
 import axios from 'axios';
 import Input from '../components/input';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback,  useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import crypto from 'crypto';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
@@ -21,7 +20,6 @@ const Auth = () => {
   //verification email
   const [verificationCode, setVerificationCode] = useState('');
   const [codeWasSended, setCodeWasSended] = useState(false);
-  const [emailWasVerifyed, setEmailWasVerifyed] = useState(false);
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) => (currentVariant === 'login' ? 'register' : 'login'));

@@ -23,8 +23,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return res.status(422).json({error:'you was registered with OAuth'});
             }
            
-            // const hashedOldPassword = await bcrypt.hash(oldPassword,12);
-
             const isCorrectPassword = await compare(
                 oldPassword, 
                 existingUser.hashedPassword

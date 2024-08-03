@@ -1,9 +1,5 @@
 import useSWR from 'swr'
-
 import fetcher from '../lib/fetcher'
-import { Movie } from '../types/movie'
-
-
 
 const useBillboard = ()=>{
     const {data,error,isLoading}=useSWR('/api/random',fetcher,{

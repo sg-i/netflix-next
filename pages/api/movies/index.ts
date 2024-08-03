@@ -2,7 +2,6 @@ import { NextApiRequest,NextApiResponse } from "next";
 
 import prismadb from '../../../lib/prismadb'
 import serverAuth from "../../../lib/serverAuth";
-import { Prisma } from "@prisma/client";
 
 function generateSorting(sort:string | string[], typeSort: string | string[]){
     const validate = () =>{
