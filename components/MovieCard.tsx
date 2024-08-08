@@ -57,6 +57,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, image, duration, genre
             group-hover:translate-y-[-6vw]
         ">
         <img
+          onClick={() => openModal(id)}
           className="
             cursor-pointer 
             object-cover
