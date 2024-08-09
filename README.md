@@ -1,5 +1,15 @@
 DEMO: https://netflix-next-sg-i.vercel.app/
 
+Full Stack приложение разработанное с использованием React, Next.js, Tailwind и SCSS, а также MongoDB для хранения данных. Основные функции включают просмотр фильмов онлайн, удобную навигацию и поиск контента. Авторизованные пользователи могут добавлять фильмы в избранное.
+
+# Stack
+- React.js
+- Next.js
+- Tailwind
+- SCSS
+- TypeScript
+- MongoDB
+
 # .env.local:
 ```
 DATABASE_URL=
